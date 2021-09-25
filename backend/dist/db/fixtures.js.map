@@ -1,0 +1,1 @@
+{"version":3,"file":"fixtures.js","sourceRoot":"","sources":["../../src/db/fixtures.ts"],"names":[],"mappings":";;AAAA,kBAAe;IACX,KAAK,EAAE;QACH,EAAC,EAAE,EAAE,CAAC,EAAE,SAAS,EAAE,SAAS,EAAE,QAAQ,EAAE,SAAS,EAAC;QAClD,EAAC,EAAE,EAAE,CAAC,EAAE,SAAS,EAAE,MAAM,EAAE,QAAQ,EAAE,MAAM,EAAC;KAC/C;CACJ,CAAA"}
