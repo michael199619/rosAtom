@@ -6,7 +6,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
     imports: [
         ConfigModule.forRoot({
             load: [app, db]
-        }),
+        })
     ],
     providers: [ConfigService],
     exports: [ConfigService],

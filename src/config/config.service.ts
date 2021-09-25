@@ -1,10 +1,8 @@
 import {registerAs} from '@nestjs/config';
 import {UsersEntities} from '../users/entities';
-import {WalletEntities} from '../wallet/entities';
 
 export const app = registerAs('app', () => ({
-    port: process.env.APP_PORT,
-    commission: process.env.COMMISSION
+    port: process.env.APP_PORT
 }));
 
 export const db = registerAs('db', () => ({
@@ -16,7 +14,6 @@ export const db = registerAs('db', () => ({
     host: process.env.POSTGRES_HOST,
     migrationsRun: false,
     entities: [
-        ...WalletEntities,
         ...UsersEntities
     ],
     logging: true,

@@ -26,7 +26,6 @@ export class UsersService {
 
     public async getUserById(id: number): Promise<User> {
         const user = await this.entityManager.createQueryBuilder(User, 'user')
-            .leftJoinAndMapMany('user.wallets', 'wallet', 'wallet', 'wallet.userId = user.id')
             .where('user.id = :id', {id})
             .getOne();
 

@@ -2,14 +2,12 @@ import {ValidationPipe} from '@nestjs/common';
 import {NestFactory} from '@nestjs/core';
 import {AppModule} from './app.module';
 import {ConfigService} from '@nestjs/config';
+import {DocumentBuilder, SwaggerModule} from "@nestjs/swagger";
 
 export async function bootstrap() {
     const app = await NestFactory.create(AppModule, {
-        cors: true,
-        logger: ['debug'],
+        cors: true
     });
-    console.log(9)
-
 
     app.enableCors({
         origin: '*'
@@ -23,6 +21,16 @@ export async function bootstrap() {
         }
     }));
 
+    app.setGlobalPrefix('api');
+
+    const options = new DocumentBuilder()
+        .setVersion('1.0')
+        .setBasePath('api')
+        .addBearerAuth()
+        .build();
+
+    const document = SwaggerModule.createDocument(app, options);
+    SwaggerModule.setup('/docs', app, document);
 
     const configService: ConfigService = app.get('ConfigService');
     await app.listen(configService.get<number>('app.port'));

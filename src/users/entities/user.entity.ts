@@ -5,7 +5,6 @@ import {
 } from 'typeorm';
 
 import { BaseEntity } from '../../shared/entities';
-import {Wallet} from "../../wallet/entities";
 
 @Entity('user')
 export class User extends BaseEntity {
@@ -15,15 +14,18 @@ export class User extends BaseEntity {
   @Column({
     type: 'varchar'
   })
-  public name: string;
+  public firstName: string;
 
-  public wallets: Wallet[];
+  @Column({
+    type: 'varchar'
+  })
+  public lastName: string;
 
   toJSON() {
     return {
       id: this.id,
-      name: this.name,
-      wallets: this.wallets,
+      firstName: this.firstName,
+      lastName: this.lastName,
       createdAt: this.createdAt,
     };
   }

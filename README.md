@@ -25,15 +25,7 @@ $ docker-compose up
 ```
 
 Server started at http://localhost:3000/ \
-Apidoc started at http://localhost:5000/
-
-## apidoc
-
-```bash
-$ npm run apidoc
-$ npm run apidoc:serve
-```
-Apidoc started at http://localhost:5000/
+Docs started at http://localhost:3000/docs
 
 ## tests
 ```bash

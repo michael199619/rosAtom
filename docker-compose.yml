@@ -9,14 +9,6 @@ services:
     volumes:
       - '${POSTGRES_FILE_PATH}:/var/lib/postgresql/data'
 
-  apidoc:
-    build:
-      context: .
-      dockerfile: Dockerfile-apidoc
-    image: 'apidoc'
-    ports:
-      - 5000:5000
-
   api:
     build:
       context: .

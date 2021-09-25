@@ -2,7 +2,6 @@ import {Injectable} from '@nestjs/common';
 import {InjectEntityManager} from '@nestjs/typeorm';
 import {EntityManager} from 'typeorm';
 import {User} from '../users/entities';
-import {Currency, Wallet} from '../wallet/entities';
 import fixtures from './fixtures';
 
 @Injectable()
@@ -23,14 +22,6 @@ export class SeedService {
         console.log('[Creating User started]');
 
         await this.entityManager.save(User, fixtures.users);
-
-        console.log('[Creating Currency finished]');
-
-        await this.entityManager.save(Currency, fixtures.currencies);
-
-        console.log('[Creating Wallet finished]');
-
-        await this.entityManager.save(Wallet, fixtures.wallets);
 
         console.log('[Seed success]');
     }

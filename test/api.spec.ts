@@ -4,7 +4,6 @@ import {UsersService} from '../src/users/users.service';
 import {INestApplication} from '@nestjs/common';
 import {TypeOrmModule} from '@nestjs/typeorm';
 import {UsersModule} from '../src/users/users.module';
-import {WalletModule} from '../src/wallet/wallet.module';
 import * as request from 'supertest';
 import {AppConfigModule} from "../src/config/config.module";
 import {ConfigModule, ConfigService} from "@nestjs/config";
@@ -25,8 +24,7 @@ describe('Api', () => {
                     inject: [ConfigService],
                     useFactory: (configService: ConfigService) => configService.get<ConnectionOptions>('db'),
                 }),
-                UsersModule,
-                WalletModule
+                UsersModule
             ],
             providers: [SeedService],
             exports: [SeedService]
@@ -57,47 +55,6 @@ describe('Api', () => {
         return request(app.getHttpServer())
             .get('/api/users')
             .expect(200)
-    });
-
-    it(`/GET wallets`, (done) => {
-        return request(app.getHttpServer())
-            .get('/api/wallets')
-            .expect(200)
-            .end((err, res) => {
-                const wallet = res.body.find(e => e.sum > 100)
-                walletFromId = wallet.id;
-                currencyId = wallet.currencyId;
-                if (err) return done(err);
-                return done();
-            });
-    });
-
-    it(`/POST create wallet`, (done) => {
-        return request(app.getHttpServer())
-            .post('/api/wallets')
-            .send({currencyId, userId})
-            .set('Accept', 'application/json')
-            .end((err, res) => {
-                walletToId = res.body.id;
-                if (err) return done(err);
-                return done();
-            });
-    });
-
-    it(`/POST transfer`, (done) => {
-        return request(app.getHttpServer())
-            .post('/api/wallets/transfer')
-            .send({
-                walletToId,
-                walletFromId,
-                sum: 50
-            })
-            .set('Accept', 'application/json')
-            .end((err, res) => {
-                console.log('transaction', res.body)
-                if (err) return done(err);
-                return done();
-            });
     });
 
     afterAll(async () => {

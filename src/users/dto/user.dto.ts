@@ -7,5 +7,9 @@ import {Expose, Transform, Type} from 'class-transformer';
 export class UserDTO {
     @IsString()
     @Expose()
-    readonly name: string;
+    readonly firstName: string;
+
+    @IsString()
+    @Expose()
+    readonly lastName: string;
 }
