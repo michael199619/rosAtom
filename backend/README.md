@@ -1,7 +1,7 @@
 ## build
 ```bash
-$ git https://github.com/michael199619/task-2-ts_nest_pg_typeorm.git
-$ cd task-2-ts_nest_pg_typeorm
+$ git https://github.com/michael199619/rosatom
+$ cd rosatom
 $ cp .env.example .env # Update database 
 $ yarn install
 ```
@@ -9,10 +9,9 @@ $ yarn install
 ### fixtures ./src/db/fixures.ts
 
 ## start
-
 ```bash
 $ yarn build
-$ yarn start 
+$ yarn start:dev
 ```
 Server started at http://localhost:3001/
 
@@ -23,7 +22,7 @@ $ docker-compose up
 ```
 
 Server started at http://localhost:3001/ \
-Docs started at http://localhost:3001/docs
+Swagger started at http://localhost:3001/docs
 
 ## tests
 ```bash
