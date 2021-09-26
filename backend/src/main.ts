@@ -21,8 +21,6 @@ export async function bootstrap() {
         }
     }));
 
-    app.setGlobalPrefix('api');
-
     const options = new DocumentBuilder()
         .setVersion('1.0')
         .setBasePath('api')
