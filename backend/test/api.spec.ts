@@ -35,27 +35,6 @@ describe('Api', () => {
     });
 
     let userId: number;
-    let currencyId: number;
-    let walletToId: number;
-    let walletFromId: number;
-
-    it(`/POST create user`, (done) => {
-        return request(app.getHttpServer())
-            .post('/api/users')
-            .send({name: 'john'})
-            .set('Accept', 'application/json')
-            .end((err, res) => {
-                userId = res.body.id;
-                if (err) return done(err);
-                return done();
-            });
-    });
-
-    it(`/GET users`, () => {
-        return request(app.getHttpServer())
-            .get('/api/users')
-            .expect(200)
-    });
 
     afterAll(async () => {
         await app.close();
