@@ -1,4 +1,4 @@
-Server started at http://localhost:3001/
+Server started at http://localhost:80/
 
 ## start docker
 ```bash
