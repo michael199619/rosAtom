@@ -1,5 +1,3 @@
-
-
 ## build
 ```bash
 $ git https://github.com/michael199619/task-2-ts_nest_pg_typeorm.git
@@ -16,7 +14,7 @@ $ yarn install
 $ yarn build
 $ yarn start 
 ```
-Server started at http://localhost:3000/
+Server started at http://localhost:3001/
 
 ## start docker
 ```bash
@@ -24,8 +22,8 @@ $ cp .env.example .env
 $ docker-compose up 
 ```
 
-Server started at http://localhost:3000/ \
-Docs started at http://localhost:3000/docs
+Server started at http://localhost:3001/ \
+Docs started at http://localhost:3001/docs
 
 ## tests
 ```bash
@@ -36,5 +34,3 @@ $ yarn test
 ```bash
 $ npm run debug
 ```
-
-After connect to 9229

@@ -1,62 +1,53 @@
-import {Body, Controller, Delete, Get, Param, Post, Query, Req} from '@nestjs/common';
+import {Body, Controller, Delete, Get, Param, Post, Query, Req, UploadedFile, UseInterceptors} from '@nestjs/common';
 import { UsersService } from './users.service';
-import {UserDTO} from './dto/user.dto';
+import {StaffQuery, PersonDataFormat} from './dto/user.dto';
+import {ApiBody, ApiConsumes, ApiProduces} from "@nestjs/swagger";
+import {FileInterceptor} from "@nestjs/platform-express";
 
 @Controller('users')
 export class UsersController {
   constructor(private usersService: UsersService) {
   }
 
-  /**
-   * @api {get} /api/users Get all users
-   * @apiName GetUsers
-   * @apiGroup user
-   *
-   * @apiSuccess {object[]} users
-   */
-  @Get('')
-  async getUsers() {
-    return await this.usersService.getUsers();
+  @Post('')
+  async getPersons(@Body() body: StaffQuery) {
+    return await this.usersService.getUsers(body);
   }
 
-  /**
-   * @api {get} /api/users/:id Get user
-   * @apiName GetUsers
-   * @apiGroup user
-   *
-   * @apiSuccess {object[]} users
-   */
   @Get(':id')
   async getUserById(@Param('id') id: number) {
     return await this.usersService.getUserById(id);
   }
 
-  /**
-   * @api {post} /api/users create user
-   * @apiName createUser
-   * @apiGroup user
-   *
-   * @apiParam {object} -
-   * @apiParam {string} -.name
-   *
-   * @apiSuccess {object} -
-   * @apiSuccess {number} -.id
-   */
+
   @Post('')
-  async createUser(@Body() user: UserDTO) {
+  async createUser(@Body() user: PersonDataFormat) {
      const {id} = await this.usersService.createUser(user);
      return {id};
   }
 
-  /**
-   * @api {delete} /api/users/:id remove user
-   * @apiName removeUser
-   * @apiGroup user
-   *
-   * @apiParam (query string) {number} id
-   */
+
   @Delete(':id')
   async removeUserById(@Param('id') id: number) {
     await this.usersService.removeUserById(id);
+  }
+
+  @Post('upload')
+  @ApiConsumes('multipart/form-data')
+  @ApiProduces('application/vnd.ms-excel')
+  @ApiBody({
+    schema: {
+      type: 'object',
+      properties: {
+        file: {
+          type: 'file',
+          format: 'binary',
+        }
+      }
+    }
+  })
+  @UseInterceptors(FileInterceptor('file'))
+  async addUserFromFile(@UploadedFile('file') file) {
+    await this.usersService.addUserFromFile(file);
   }
 }

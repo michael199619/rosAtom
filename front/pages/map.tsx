@@ -1,7 +1,7 @@
 import {FC} from 'react'
-import styles from './Select.module.sass'
+import styles from '../app/styles/map.module.sass'
 
-const Select: FC = () => {
+const Map: FC = () => {
     return (
         <div className={styles.Wrapper}>
 
@@ -9,4 +9,4 @@ const Select: FC = () => {
     )
 }
 
-export default Select
+export default Map
