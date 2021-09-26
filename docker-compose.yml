@@ -15,9 +15,9 @@ services:
       dockerfile: Dockerfile
     image: 'api'
     env_file:
-      - './backend/.env.docker'
+      - './.env.docker'
     ports:
-      - '${APP_PORT}:${APP_PORT}'
+      - '${API_PORT}:${API_PORT}'
     depends_on:
       - postgres
 
@@ -26,9 +26,9 @@ services:
       context: front
       dockerfile: Dockerfile
     env_file:
-      - './front/.env.docker'
+      - './.env.docker'
     ports:
-      - '${APP_PORT}:${APP_PORT}'
+      - '${FRONT_PORT}:${FRONT_PORT}'
     image: 'front'
     depends_on:
       - api
