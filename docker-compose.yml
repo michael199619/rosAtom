@@ -25,8 +25,6 @@ services:
     build:
       context: front
       dockerfile: Dockerfile
-    env_file:
-      - './.env.docker'
     ports:
       - '3000:3000'
     image: 'front'
@@ -37,8 +35,6 @@ services:
     image: nginx
     volumes:
       - ./nginx:/etc/nginx
-    env_file:
-      - './.env.docker'
     ports:
       - "80:80"
     depends_on:
